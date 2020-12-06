@@ -1,0 +1,18 @@
+ <div class="modal"
+      data-controller="modal"
+      data-modal-target="modal"
+      data-action="click->modal#closeClickedOutside mousedown->modal#trackMouseDown mouseup->modal#trackMouseUp ajax:error->modal#error" >
+  <div class="modal__popup">
+    <% if has_title? %>
+      <div class="modal__header">
+        <%= title %>
+      </div>
+    <% end %>
+    <div class="modal__body">
+      <%= body %>
+    </div>
+    <div class="modal__footer">
+      <%= footer %>
+    </div>
+  </div>
+</div>

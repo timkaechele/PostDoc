@@ -1,0 +1,19 @@
+<div class="sidebar">
+  <div class="sidebar__inner-container">
+    <h1>PostDoc</h1>
+  </div>
+  <nav class="nav-list">
+    <% mailboxes.each do |mailbox| %>
+      <%= link_to mailbox.name, mailbox_path(mailbox), class: mailbox == current_mailbox ? 'active' : '' %>
+    <% end %>
+  </nav>
+  <% if mailboxes.any? %>
+    <div class="sidebar-bottom" data-remote-content-url-value="<%= new_mailbox_path %>" data-controller="remote-content">
+      <%= link_to 'New Mailbox',
+                  new_mailbox_path,
+                  class: "button button--block button--primary",
+                  data: { action: 'click->remote-content#load' } %>
+      <div data-remote-content-target="outlet"></div>
+    </div>
+  <% end %>
+</div>

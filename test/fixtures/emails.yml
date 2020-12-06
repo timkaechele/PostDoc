@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mailbox: one
+  template_id: MyString
+  rendered_html: MyString
+  request_payload: 
+
+two:
+  mailbox: two
+  template_id: MyString
+  rendered_html: MyString
+  request_payload: 

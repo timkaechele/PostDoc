@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Development Mailbox
+  sendgrid_mock_api_token: 'c897759a7f507da60fb6ce9'
+  sendgrid_api_token: sendgrid api token 1
+
+two:
+  name: Staging Mailbox
+  sendgrid_mock_api_token: b842ba77bc82cd0f76fbc0
+  sendgrid_api_token: sendgrid api token 2

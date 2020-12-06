@@ -1,0 +1,27 @@
+<%= form_for(@mailbox, remote: true, data: {
+    controller: 'remote-form-modal',
+    'remote-form-modal-target': 'form',
+    'action': 'ajax:success->remote-form-modal#handleSuccess ajax:error->remote-form-modal#handleError' }) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', autofocus: true %>
+    <% if @mailbox.errors[:name].any? %>
+      <p class="error-message">
+        <% @mailbox.errors.full_messages_for(:name).each do |error_message| %>
+          <%= error_message %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <%= f.label :sendgrid_api_token %>
+    <%= f.text_field :sendgrid_api_token, class: 'form-control' %>
+    <% if @mailbox.errors[:sendgrid_api_token].any? %>
+      <p class="error-message">
+        <% @mailbox.errors.full_messages_for(:sendgrid_api_token).each do |error_message| %>
+          <%= error_message %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

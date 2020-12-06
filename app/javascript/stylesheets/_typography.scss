@@ -1,0 +1,40 @@
+dd {
+  padding-left: 0;
+  margin-left: 0;
+  &:nth-child(even) {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+
+  }
+  &:nth-child(odd) {
+    margin-bottom: 1rem;
+  }
+}
+
+a {
+  color: $primary-500;
+}
+
+pre {
+  margin-top: 0;
+  overflow-y: auto
+}
+
+.no-link-appearance {
+  text-decoration: none;
+  color: inherit;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-overflow-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

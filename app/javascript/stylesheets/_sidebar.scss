@@ -1,0 +1,39 @@
+html {
+  background: $grey-200;
+}
+body {
+  line-height: 1.3;
+  font-family: 'Helvetica', Arial;
+  color: $primary-900;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 20%;
+  max-width: 300px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: none;
+  background: $grey-400;
+  border-right: 1px solid $grey-500;
+}
+
+.sidebar__inner-container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.sidebar-bottom {
+  background: rgba($grey-200, 0.5);
+  position: fixed;
+  padding-top: 1rem;
+  width: 20%;
+  max-width: 300px;
+  bottom: 20px;
+}
+
+.content {
+  margin-left: 350px;
+}

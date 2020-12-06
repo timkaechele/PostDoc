@@ -1,0 +1,23 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  th {
+    text-align: left;
+    border-bottom: 1px solid $grey-500;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    vertical-align: center;
+  }
+  tr > td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+.table--for-attributes {
+  tr > td:first-child {
+    font-weight: 600;
+    min-width: 100px;
+  }
+}

@@ -1,0 +1,102 @@
+<table class="table table--for-attributes mb-2">
+   <tr>
+    <td>Mailbox:</td>
+    <td><%= link_to @email.mailbox.name, mailbox_path(@email.mailbox) %></td>
+  </tr>
+  <tr>
+    <td>From:</td>
+    <td><span class="email-address-list-entry"><%= @email.from %></span></td>
+  </tr>
+  <tr>
+    <td>To:</td>
+    <td>
+      <% @email.to.each do |email_address| %>
+        <span class="email-address-list-entry"><%= email_address %></span>
+      <% end %>
+    </td>
+  </tr>
+  <% if @email.cc.any? %>
+    <tr>
+      <td>CC:</td>
+      <td>
+        <% @email.cc.each do |email_address| %>
+          <span class="email-address-list-entry"><%= email_address %></span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  <% if @email.bcc.any? %>
+    <tr>
+      <td>BCC:</td>
+      <td>
+        <% @email.bcc.each do |email_address| %>
+          <span class="email-address-list-entry"><%= email_address %></span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Subject:</td>
+    <td><%= @email.subject %></td>
+  </tr>
+
+  <tr>
+    <td>Template:</td>
+    <td><%= link_to @email.template_name, @email.link_to_template, target: '_blank' %></td>
+  </tr>
+
+  <tr>
+    <td>Received:</td>
+    <td><%= l(@email.created_at, format: :long) %></td>
+  </tr>
+</table>
+
+<p>
+  <%= link_to "HTML",
+              email_path(@email, selected: 'html'),
+              class: 'button',
+              'data-turbolinks-action': "replace" %>
+  <%= link_to "Plain Text",
+              email_path(@email, selected: 'plain_text'),
+              class: 'button',
+              'data-turbolinks-action': "replace" %>
+  <%= link_to "Source",
+              email_path(@email, selected: 'source'),
+              class: 'button',
+              'data-turbolinks-action': "replace" %>
+</p>
+<% if @selected == 'plain_text' %>
+  <section>
+    <h1>Plain Text</h1>
+    <div class="email__preview email__preview--plaintext">
+      <%= simple_format(@email.rendered_plain_text) %>
+    </div>
+  </section>
+<% elsif @selected == 'source' %>
+  <section>
+    <h2>Request</h2>
+    <div class="email__preview email__preview--plaintext">
+      <pre><%= JSON.pretty_generate(@email.request_payload) %></pre>
+    </div>
+    <h2>Personalization</h2>
+    <div class="email__preview email__preview--plaintext">
+      <pre><%= JSON.pretty_generate(@email.personalization) %></pre>
+    </div>
+    <h2>Template</h2>
+    <div class="email__preview email__preview--plaintext">
+      <pre><%= JSON.pretty_generate(@email.template_payload) %></pre>
+    </div>
+  </section>
+<% else %>
+  <section>
+    <h1>HTML</h1>
+    <div class="email__preview">
+      <iframe width="100%"
+              src="<%= preview_email_path(@email) %>"
+              frameborder="0"
+              data-controller="iframe-auto-height"
+              data-iframe-auto-height-target="iframe"
+              data-action="load->iframe-auto-height#loaded"></iframe>
+    </div>
+  </section>
+<% end %>

@@ -1,0 +1,9 @@
+<%= render ModalComponent.new(title: 'New Mailbox') do |component| %>
+  <% component.with(:body) do %>
+    <%= render('form') %>
+  <% end %>
+  <% component.with(:footer) do %>
+    <button data-action="click->modal#close" class="button">Cancel</button>
+    <input type="submit" form="new_mailbox" class="button button--primary" value="Create Mailbox">
+  <% end %>
+<% end %>

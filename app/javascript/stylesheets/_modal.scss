@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($grey-300, 0.6);
+}
+
+.modal__popup {
+  position: fixed;
+  top: 50px;
+  left: 30%;
+  right: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid $grey-500;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0px $grey-700;
+}
+
+.modal__header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid $grey-500;
+  background: $grey-400;
+}
+
+.modal__body {
+  padding: 1rem;
+  padding-top: 1rem;
+  background: $grey-100;
+}
+
+.modal__footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid $grey-500;
+  background: $grey-400;
+}
+

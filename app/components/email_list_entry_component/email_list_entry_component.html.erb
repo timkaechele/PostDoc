@@ -1,0 +1,10 @@
+<%= link_to email_path(email), class: "no-link-appearance" do %>
+  <article class="email <%= email_modifier_class %>">
+    <span class="email__from">
+      <%= email.from.email %>
+    </span>
+    <span class="email__to"><%= email.to.map(&:email).join(",") %></span>
+    <b class="email__subject"><%= email.subject %></b>
+    <span class="email__created-at"><%= l(email.created_at, format: :short) %></span>
+  </article>
+<% end %>

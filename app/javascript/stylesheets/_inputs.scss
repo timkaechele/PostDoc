@@ -1,0 +1,65 @@
+.form-group {
+  margin-bottom: 1rem;
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}
+
+input[type=text].form-control {
+  display: block;
+  font: inherit;
+  width: 100%;
+  outline: none;
+  border: 1px solid $grey-500;
+  box-shadow: 0 1px 2px 0px $grey-600;
+  padding: 0.35rem 0.5rem;
+  border-radius: 5px;
+  &:focus   {
+    border-color: $primary-500;
+  }
+}
+
+input[disabled].form-control,
+input[readonly].form-control {
+  background: $grey-400;
+}
+
+input[type=submit].form-control {
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.error-message {
+  color: $danger-500;
+  font-size: 0.75rem;
+}
+
+.field_with_errors {
+  input[type=text].form-control {
+    border-color: $danger-500;
+  }
+}
+
+.input-group {
+  display: flex;
+}
+
+input[type=text].input-group__input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group__append {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid $grey-500;
+  border-left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 1px 2px 0px $grey-600;
+  margin-bottom: 0;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}

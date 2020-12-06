@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post Doc</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="turbolinks-cache-control" content="no-cache">
+  </head>
+
+  <body>
+    <%= render(partial: 'shared/sidebar') %>
+    <main class="main-content">
+      <% flash.keys.each do |key| %>
+        <div class="alert alert--<%= key %>" data-controller="alert" data-alert-target="alert">
+          <%= flash[key] %>
+          <a href="#" data-action="click->alert#close" class="alert__close">&times;</a>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

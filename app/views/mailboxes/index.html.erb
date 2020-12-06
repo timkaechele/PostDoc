@@ -1,0 +1,11 @@
+<div>
+  <p class="text-center">It seems you don't have any mailboxes yet.</p>
+  <p class="text-center">Create your first mailbox now.</p>
+  <div data-remote-content-url-value="<%= new_mailbox_path %>" data-controller="remote-content">
+    <p class="text-center"><%= link_to 'New Mailbox',
+                new_mailbox_path,
+                class: "button button--primary",
+                data: { action: 'click->remote-content#load' } %></p>
+    <div data-remote-content-target="outlet"></div>
+  </div>
+</div>

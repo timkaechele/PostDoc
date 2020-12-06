@@ -1,0 +1,38 @@
+<%= render ModalComponent.new(title: 'Mailbox Details') do |component| %>
+  <% component.with(:body) do %>
+    <dt>
+      <dd>Name</dd>
+      <dd>
+        <%= @mailbox.name %>
+      </dd>
+      <dd>Mock API Token</dd>
+      <dd>
+        <div class="input-group" data-controller="clipboard">
+          <input data-clipboard-target="source" type="text" class="input-group__input form-control" readonly value="<%= @mailbox.sendgrid_mock_api_token %>"/>
+          <div class="input-group__append">
+            <a data-action="click->clipboard#copy" href="#">Copy</a>
+          </div>
+        </div>
+      </dd>
+      <dd>Sendgrid API Token</dd>
+      <dd>
+        <input type="text" class="form-control" readonly value="<%= @mailbox.sendgrid_api_token.length.times.map { '*' }.join() %>"/>
+      </dd>
+    </dt>
+    <p class="text-right">
+      <%= link_to 'Edit',
+                  edit_mailbox_path,
+                  class: 'button',
+                  data: { action: 'click->remote-content#load' } %>
+      <%= link_to 'Delete',
+                  mailbox_path(@mailbox),
+                  class: 'button button--danger',
+                  data: {
+                    confirm: 'Are you sure you want to delete this mailbox?',
+                    method: :delete } %>
+    </p>
+  <% end %>
+  <% component.with(:footer) do %>
+    <button data-action="click->modal#close" class="button">Close</button>
+  <% end %>
+<% end %>

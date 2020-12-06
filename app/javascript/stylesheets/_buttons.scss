@@ -1,0 +1,52 @@
+.button {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid $grey-500;
+  box-shadow: 0 1px 2px 0px $grey-700;
+  outline: none;
+  &:active {
+    box-shadow: none;
+  }
+  &:focus {
+    border-color: $grey-600;
+  }
+  cursor: pointer;
+}
+
+.button--block {
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.button--primary {
+  background: $primary-500;
+  border-color: $primary-600;
+  color: $grey-100;
+  &:active {
+    background: $primary-600;
+  }
+  &:focus {
+    border-color: $primary-800;
+  }
+}
+
+.button--danger {
+  background: $danger-500;
+  border-color: $danger-600;
+  color: $grey-100;
+  &:active {
+    background: $danger-600;
+  }
+  &:focus {
+    border-color: $danger-800;
+  }
+}
+
+.button-collection {
+  margin-top: 0;
+}

@@ -1,0 +1,39 @@
+.alert {
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid;
+  margin-bottom: 0.5rem;
+  @extend .clearfix;
+}
+
+.alert--success {
+  background: $success-500;
+  border-color: $success-700;
+}
+
+.alert--warning {
+  background: $warning-500;
+  border-color: $warning-700;
+}
+
+.alert--error {
+  background: $danger-500;
+  border-color: $danger-700;
+}
+
+.alert__close {
+  float: right;
+  text-decoration: none;
+}
+
+.alert--success .alert__close {
+  color: $success-900;
+}
+
+.alert--warning .alert__close {
+  color: $warning-900;
+}
+
+.alert--error .alert__close {
+  color: $danger-900;
+}
