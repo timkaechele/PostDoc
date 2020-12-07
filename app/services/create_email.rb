@@ -72,10 +72,12 @@ class CreateEmail
 
   def render_plaintext(template_version, personalization)
     if template_version['generate_plain_content']
-      document = Nokogiri::HTML(render_html(template_version, personalization))
+      document = Nokogiri::HTML(render_html(template_version,
+                                personalization['dynamic_template_data']))
       document.text()
     else
-      handlebars_renderer.render(template_version['plain_content'], personalization)
+      handlebars_renderer.render(template_version['plain_content'],
+                                 personalization['dynamic_template_data'])
     end
   end
 
