@@ -61,8 +61,11 @@ class CreateEmail
   end
 
   def render_subject(template_version, personalization)
-    handlebars_renderer.render(template_version['subject'],
-                               { 'subject' => personalization['subject'] })
+    subject_template = personalization['subject']
+    subject_template = template_version['subject'] if subject_template.blank?
+
+    handlebars_renderer.render(subject_template,
+                               personalization['dynamic_template_data'])
   end
 
   def render_html(template_version, personalization)
