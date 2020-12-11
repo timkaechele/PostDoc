@@ -1,6 +1,12 @@
 class EmailsController < ApplicationController
   before_action :set_email, only: [:show, :mark_as_read, :body_preview]
 
+  def index
+    @emails = Email.where(mailbox_id: params[:mailbox_id])
+    @emails = @emails.search(params[:q]) if params[:q].present?
+    render(layout: false)
+  end
+
   def show
     @selected = params[:selected]
     @email.mark_as_read! unless @email.read?

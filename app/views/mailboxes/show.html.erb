@@ -1,56 +1,68 @@
-<section>
-  <header class="header header--with-border">
-    <div class="header--justified-header">
-      <h1><%= @mailbox.name %> (<%= @mailbox.unread_count %>)</h1>
-      <div data-controller="remote-content">
-        <p>
-          <%= link_to '&#128712;'.html_safe,
-                      details_mailbox_path(@mailbox),
-                      class: "button",
-                      data: { action: 'click->remote-content#load'}  %>
+<div data-controller="search" data-search-url-value="<%= emails_path(mailbox_id: @mailbox.id) %>">
+  <section>
+    <header class="header header--with-border">
+      <div class="header--justified-header">
+        <h1><%= @mailbox.name %> (<%= @mailbox.unread_count %>)</h1>
+        <div data-controller="remote-content">
+          <p>
+            <%= link_to '&#128712;'.html_safe,
+                        details_mailbox_path(@mailbox),
+                        class: "button",
+                        data: { action: 'click->remote-content#load'}  %>
+          </p>
+          <div data-remote-content-target="outlet"></div>
+        </div>
+      </div>
+      <% if @emails.any? %>
+        <p class="button-collection">
+          <%= link_to 'Mark all as read',
+                      mark_all_as_read_mailbox_path(@mailbox),
+                      class: 'button button--primary',
+                      method: :post,
+                      'data-confirm': 'Are you sure you want to mark all emails as read?' %>
+          <%= link_to 'Clear mailbox',
+                      clear_mailbox_mailbox_path(@mailbox),
+                      class: 'button button--danger',
+                      method: :post,
+                      'data-confirm': 'Are you sure you want to delete all emails?' %>
         </p>
-        <div data-remote-content-target="outlet"></div>
-      </div>
-    </div>
+      <% end %>
+    </header>
+  </section>
+  <div class="form-group">
+    <input class="form-control"
+           data-search-target="query"
+           data-action="keyup->search#search"
+           placeholder="Search..."
+           type="text"
+           class="form-control"
+           />
+  </div>
+  <div data-search-target="output">
     <% if @emails.any? %>
-      <p class="button-collection">
-        <%= link_to 'Mark all as read',
-                    mark_all_as_read_mailbox_path(@mailbox),
-                    class: 'button button--primary',
-                    method: :post,
-                    'data-confirm': 'Are you sure you want to mark all emails as read?' %>
-        <%= link_to 'Clear mailbox',
-                    clear_mailbox_mailbox_path(@mailbox),
-                    class: 'button button--danger',
-                    method: :post,
-                    'data-confirm': 'Are you sure you want to delete all emails?' %>
-      </p>
-    <% end %>
-  </header>
-</section>
-
-<% if @emails.any? %>
-  <div class="email email--no-chrome">
-    <b class="email__from">
-      From
-    </b>
-    <b class="email__to">To</b>
-    <b class="email__subject">Subject</b>
-    <b class="email__created-at">Received At</b>
-  </div>
-  <% @emails.each do |email| %>
-    <%= render(EmailListEntryComponent.new(email: email)) %>
-  <% end %>
-<% else %>
-  <div class="text-center">
-    <p>¯\_(ツ)_/¯</p>
-    <p>You don't have any emails yet.</p>
-    <p>Use this api token to send emails with sendgrid</p>
-    <div class="width-50 centered input-group" data-controller="clipboard">
-      <input data-clipboard-target="source" type="text" class="input-group__input form-control" readonly value="<%= @mailbox.sendgrid_mock_api_token %>"/>
-      <div class="input-group__append">
-        <a data-action="click->clipboard#copy" href="#">Copy</a>
+      <div class="email email--no-chrome">
+        <b class="email__from">
+          From
+        </b>
+        <b class="email__to">To</b>
+        <b class="email__subject">Subject</b>
+        <b class="email__created-at">Received At</b>
       </div>
-    </div>
+      <% @emails.each do |email| %>
+        <%= render(EmailListEntryComponent.new(email: email)) %>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+        <p>¯\_(ツ)_/¯</p>
+        <p>You don't have any emails yet.</p>
+        <p>Use this api token to send emails with sendgrid</p>
+        <div class="width-50 centered input-group" data-controller="clipboard">
+          <input data-clipboard-target="source" type="text" class="input-group__input form-control" readonly value="<%= @mailbox.sendgrid_mock_api_token %>"/>
+          <div class="input-group__append">
+            <a data-action="click->clipboard#copy" href="#">Copy</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

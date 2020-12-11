@@ -1,0 +1,18 @@
+<% if @emails.any? %>
+  <div class="email email--no-chrome">
+    <b class="email__from">
+      From
+    </b>
+    <b class="email__to">To</b>
+    <b class="email__subject">Subject</b>
+    <b class="email__created-at">Received At</b>
+  </div>
+  <% @emails.each do |email| %>
+    <%= render(EmailListEntryComponent.new(email: email)) %>
+  <% end %>
+<% else %>
+  <div class="text-center">
+    <p>¯\_(ツ)_/¯</p>
+    <p>We couldn't find any emails.</p>
+  </div>
+<% end %>

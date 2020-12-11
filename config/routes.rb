@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       post 'clear_mailbox', to: 'mailboxes#clear_mailbox'
     end
   end
-  resources :emails, only: [:show] do
+  resources :emails, only: [:index, :show] do
     member do
       get '/preview', to: 'emails#body_preview'
     end

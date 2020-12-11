@@ -9,6 +9,10 @@ class Email < ApplicationRecord
   validates :rendered_html, presence: true
   validates :rendered_plain_text, presence: true
 
+  def self.search(query)
+    Search::EmailSearch.new.search(self, query)
+  end
+
   def self.unread
     where(read_at: nil)
   end
